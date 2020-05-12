@@ -32,7 +32,6 @@ func typeCastToIntegers(elementString string) []int {
 }
 
 func getInput() string {
-	elements := make([]int, 0)
 	var integerString string
 	buffer := bufio.NewScanner(os.Stdin)
 	fmt.Printf("Please enter the integer values separated by a space\n>")
@@ -76,7 +75,7 @@ func fizzBuzzer(elements []int, fizz, buzz int) {
 
 func main() {
 	elementString := getInput()
-	fmt.Printf("The elements are %v \n", elements)
+	fmt.Printf("The elements are %v \n", elementString)
 	elements := typeCastToIntegers(elementString)
 	fizz, buzz := getFizzBuzz()
 	fmt.Printf("The Fizz is: %d, The Buzz is: %d \n", fizz, buzz)
