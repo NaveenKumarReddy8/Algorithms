@@ -9,49 +9,38 @@ a multiple of 3 AND 5, the number is replaced with "fizz buzz." In essence, it e
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 	"strconv"
+	"strings"
 )
 
-func stringOrConvertToInt(input string) interface{} {
-	intValue, err := strconv.Atoi(input)
-	if err != nil {
-		return input
-	} else {
-		return intValue
-	}
-}
-
-func getInput() []int {
-	// Creating a slice to which integers would be appended which are given as inputs by the user.
-	elements := make([]int, 0, 10)
-	for {
-		var userInput string
-		fmt.Println("Type any integer value to proceed, type 'done' if feeding the integers is completed")
-		fmt.Print(">")
-		_, err := fmt.Scanf("%s", &userInput)
+func typeCastToIntegers(elementString string) []int {
+	elements := make([]int, 0)
+	splittedIntegerStrings := strings.Fields(elementString)
+	for _, value := range splittedIntegerStrings {
+		value = strings.TrimSpace(value)
+		integerValue, err := strconv.Atoi(value)
 		if err != nil {
 			fmt.Println(err)
 		} else {
-			input := stringOrConvertToInt(userInput)
-			integerValue, ok := input.(int)
-			if ok {
-				elements = append(elements, integerValue)
-				continue
-			} else {
-				stringValue, ok := input.(string)
-				if ok {
-					if stringValue == "done" {
-						break
-					} else {
-						fmt.Println("Invalid input! Please type 'done' if completed with feeding the integers.")
-					}
-				}
-			}
+			elements = append(elements, integerValue)
 		}
 	}
 	return elements
+}
 
+func getInput() string {
+	elements := make([]int, 0)
+	var integerString string
+	buffer := bufio.NewScanner(os.Stdin)
+	fmt.Printf("Please enter the integer values separated by a space\n>")
+	if buffer.Scan() {
+		integerString = buffer.Text()
+	}
+	integerString = strings.TrimSpace(integerString)
+	return integerString
 }
 
 func getFizzBuzz() (fizz, buzz int) {
@@ -86,8 +75,9 @@ func fizzBuzzer(elements []int, fizz, buzz int) {
 }
 
 func main() {
-	elements := getInput()
+	elementString := getInput()
 	fmt.Printf("The elements are %v \n", elements)
+	elements := typeCastToIntegers(elementString)
 	fizz, buzz := getFizzBuzz()
 	fmt.Printf("The Fizz is: %d, The Buzz is: %d \n", fizz, buzz)
 	fizzBuzzer(elements, fizz, buzz)
