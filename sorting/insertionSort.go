@@ -7,6 +7,7 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"time"
 )
 
 func insertionSort(toBeSorted []int) []int {
@@ -44,7 +45,7 @@ func splitAndTypecastToInt(inputStr string) []int {
 }
 
 func getUserInput() string {
-	fmt.Println("Enter the numbers to be sorted with spaces between each")
+	fmt.Printf("Enter the numbers to be sorted with spaces between each\n>")
 	scanner := bufio.NewReader(os.Stdin)
 	stringOfNumbers, err := scanner.ReadString('\n')
 	if err != nil {
@@ -56,7 +57,8 @@ func getUserInput() string {
 func main() {
 	inputStr := getUserInput()
 	integerInput := splitAndTypecastToInt(inputStr)
-	fmt.Println("The input is: ", integerInput)
+	startTime := time.Now()
 	sortedSlice := insertionSort(integerInput)
+	fmt.Printf("Time taken for Insertion sort for %d elements is %s\n", len(integerInput), time.Since(startTime))
 	fmt.Println("The sorted slice is: ", sortedSlice)
 }
