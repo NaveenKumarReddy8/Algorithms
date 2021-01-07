@@ -1,3 +1,3 @@
-module github.com/NaveenKumarReddy8/sorting
+module github.com/NaveenKumarReddy8/algorithms
 
 go 1.15
