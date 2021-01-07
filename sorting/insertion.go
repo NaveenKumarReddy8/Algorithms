@@ -1,4 +1,4 @@
-package main
+package sorting
 
 import (
 	"bufio"
@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-func insertionSort(toBeSorted []int) []int {
+func performInsertionSort(toBeSorted []int) []int {
 	lengthOfSlice := len(toBeSorted)
 	if lengthOfSlice == 1 {
 		return toBeSorted
@@ -54,11 +54,12 @@ func getUserInput() string {
 	return stringOfNumbers
 }
 
-func main() {
+// Insertion .
+func Insertion() {
 	inputStr := getUserInput()
 	integerInput := splitAndTypecastToInt(inputStr)
 	startTime := time.Now()
-	sortedSlice := insertionSort(integerInput)
+	sortedSlice := performInsertionSort(integerInput)
 	fmt.Printf("Time taken for Insertion sort for %d elements is %s\n", len(integerInput), time.Since(startTime))
 	fmt.Println("The sorted slice is: ", sortedSlice)
 }
