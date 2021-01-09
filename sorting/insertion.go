@@ -1,6 +1,7 @@
 package sorting
 
-func performInsertionSort(toBeSorted []int) []int {
+// Insertion .
+func Insertion(toBeSorted []int) []int {
 	lengthOfSlice := len(toBeSorted)
 	if lengthOfSlice == 1 {
 		return toBeSorted
@@ -19,9 +20,4 @@ func performInsertionSort(toBeSorted []int) []int {
 		toBeSorted[previousIndex+1] = key
 	}
 	return toBeSorted
-}
-
-// Insertion .
-func Insertion(integerInput []int) []int {
-	return performInsertionSort(integerInput)
 }

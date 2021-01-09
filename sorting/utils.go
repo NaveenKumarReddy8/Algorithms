@@ -32,7 +32,9 @@ func getUserInput() string {
 	return stringOfNumbers
 }
 
-// ObtainAndParseInput .
+// ObtainAndParseInput accepts the strings from the user
+// ,splits it values separated by spaces, typecasts the
+// splitted string slice to integers of base 10.
 func ObtainAndParseInput() []int {
 	return splitAndTypecastToInt(getUserInput())
 }
